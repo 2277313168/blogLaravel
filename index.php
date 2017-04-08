@@ -1,6 +1,9 @@
 <?php
-
 session_start();
+require_once __DIR__.'/public/index.php';
+
+//ob_start();
+
 
 /**
  * Laravel - A PHP Framework For Web Artisans
@@ -20,4 +23,4 @@ if ($uri !== '/' && file_exists(__DIR__.'/public'.$uri)) {
     return false;
 }
 
-require_once __DIR__.'/public/index.php';
+

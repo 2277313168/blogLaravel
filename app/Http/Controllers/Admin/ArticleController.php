@@ -20,7 +20,7 @@ class ArticleController extends BaseController {
 
     public function add(){
         if($input = Input::all()){
-            var_dump($input);
+            var_dump($input['arti_thumb']);
         }
         $catList0 = Category::orderBy('cat_order','asc')->get();
         $catList= (new Category)->tree($catList0,0,0);

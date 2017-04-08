@@ -37,7 +37,7 @@
 
     <div class="result_wrap">
 
-        <form action="{{url('arti/add')}}" method="post">
+        <form action="{{url('arti/add')}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
@@ -90,7 +90,7 @@
                     <link rel="stylesheet" type="text/css" href="{{asset('resources/org/uploadify/uploadify.css')}}">
 
 
-                    <input name="arti_thumb" type="text" size="50"/>
+                    <input name="arti_thumb" type="text" value="" size="30"/>
                     <input id="file_upload" name="file_upload" type="file" multiple="true">
 
 
@@ -98,7 +98,7 @@
                         <?php $timestamp = time();?>
                         $(function() {
                             $('#file_upload').uploadify({
-                                'buttonText'   : '图片上传',
+                                'buttonText'   : '上传图片',
                                 'formData'     : {
                                     'timestamp' : '<?php echo $timestamp;?>',
                                     '_token'     : "{{csrf_token()}}"
@@ -106,11 +106,19 @@
                                 'swf'      : "{{asset('resources/org/uploadify/uploadify.swf')}}",
                                 'uploader' :  "{{url('base/upload')}}",
                                 'onUploadSuccess' : function(file, data, response) {
+                                    if(data == 0){
+                                        alert('上传失败');
+                                    }else{
+                                        //上传成功后执行的ajax命令
+                                        //alert(data.key);
+                                        $('input[name=arti_thumb]').val(data);
+                                        $('#art_thumb_img').attr('src',"http://onyvwg7xz.bkt.clouddn.com/"+data);
+                                    }
 
                                     $('input[name=arti_thumb]').val(data);
-                                    $('#art_thumb_img').attr('src','../'+data); // 当前目录'./'，上级目录'../'
 
- //                                   alert(data);
+
+
                                 }
                             });
                         });
@@ -127,7 +135,7 @@
                 </tr>
                     <td></td>
                 <td>
-                    <img id='art_thumb_img' src="" max-height="40px" max-width="30px" />
+                    <img id='art_thumb_img' src="" style="max-height: 60px;max-width: 40px"  />
                 </td>
                 <tr>
                     <th>内容：</th>
