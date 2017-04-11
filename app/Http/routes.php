@@ -50,6 +50,9 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
 
     //article
     Route::any('arti/add','ArticleController@add');
+    Route::any('arti/index','ArticleController@index');
+    Route::any('arti/edit/{id}','ArticleController@edit');
+    Route::any('arti/delete/{id}','ArticleController@delete');
 
 
 });
@@ -57,4 +60,5 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
 Route::group([  'middleware' => ['web'] ], function () {
     //BaseController
     Route::any('base/upload', 'BaseController@upload');
+    Route::any('base/deleteQiniu/{key}', 'BaseController@deleteQiniu');
 });

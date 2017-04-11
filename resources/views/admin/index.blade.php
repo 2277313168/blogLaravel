@@ -27,6 +27,7 @@
             	<h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
                 <ul class="sub_menu">
 					<li><a href="{{url('cat/index')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>分类页</a></li>
+					<li><a href="{{url('arti/index')}}" target="main"><i class="fa fa-fw fa-list-alt"></i>文章页</a></li>
 
                     <li><a href="add.html" target="main"><i class="fa fa-fw fa-plus-square"></i>添加页</a></li>
                     <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>列表页</a></li>

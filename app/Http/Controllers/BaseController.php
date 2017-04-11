@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Input;
 use Qiniu\Auth;
 // 引入上传类
 use Qiniu\Storage\UploadManager;
+use Qiniu\Storage\BucketManager;
 
 
 class BaseController extends Controller
@@ -44,6 +45,7 @@ class BaseController extends Controller
 //    }
 
     //上传图片到七牛
+    //多幅图片上传，自动调用upload多次
     public function upload()
     {
         $file = Input::file('Filedata');
@@ -83,6 +85,36 @@ class BaseController extends Controller
             $data = $key;
         }
         return $data;
+    }
+
+
+    public function deleteQiniu($key){
+
+        require_once __DIR__ .'/../../../vendor/Qiniu_sdk/autoload.php';
+
+        // 需要填写你的 Access Key 和 Secret Key
+        $accessKey = '3UqPa31k1QlsFpnPl3zIbSMb4KJh_SQy3PCXdTCp';
+        $secretKey = 'mGmv7e_dm4zfr0LFF6pyljwdG97-vRKITe6Bm4u-';
+
+        //初始化Auth状态：
+        $auth = new Auth($accessKey, $secretKey);
+
+        //初始化BucketManager
+        $bucketMgr = new BucketManager($auth);
+
+        //你要测试的空间， 并且这个key在你空间中存在
+        $bucket =  'blogimages';
+        //$key = 'php-logo.png';
+
+        //删除$bucket 中的文件 $key
+        $err = $bucketMgr->delete($bucket, $key);
+
+        if ($err !== null) {
+            var_dump($err);
+        } else {
+            echo "Success!";
+        }
+
     }
 
 }

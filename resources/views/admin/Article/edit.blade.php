@@ -37,14 +37,14 @@
 
     <div class="result_wrap">
 
-        <form action="{{url('arti/add')}}" method="post" enctype="multipart/form-data">
+        <form action="{{url('arti/edit/'.$arti['arti_id'])}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
                 <tr>
                     <th><i class="require">*</i>文章标题：</th>
                     <td>
-                        <input type="text" class="lg" name="arti_title">
+                        <input type="text" class="lg" name="arti_title" value="{{$arti['arti_title']}}">
                         <span><i class="fa fa-exclamation-circle yellow"></i>文章标题必须填写</span>
                     </td>
                 </tr>
@@ -54,7 +54,11 @@
                     <td>
                         <select name="cat_id">
                             <?php foreach($catList as $k=>$v): ?>
-                            <option value="{{$v['cat_id']}}"><?php echo str_repeat('|---',$v['level']); ?>{{$v['cat_name']}}</option>
+                            <option value="{{$v['cat_id']}}"
+                            <?php if($v['cat_id'] == $arti['cat_id']): ?>
+                            selected = 'selected'
+                                    <?php endif; ?>
+                            ><?php echo str_repeat('|---',$v['level']); ?>{{$v['cat_name']}}</option>
                             <?php endforeach; ?>
                         </select>
                     </td>
@@ -63,14 +67,14 @@
                 <tr>
                     <th>编者：</th>
                     <td>
-                        <input type="text" name="arti_editor">
+                        <input type="text" name="arti_editor" value="{{$arti['arti_editor']}}">
                     </td>
                 </tr>
 
                 <tr>
                     <th>标签：</th>
                     <td>
-                        <input type="text" class="lg" name="arti_tag">
+                        <input type="text" class="lg" name="arti_tag" value="{{$arti['arti_tag']}}">
                         <p>可以写30个字</p>
                     </td>
 
@@ -78,7 +82,7 @@
                 <tr>
                     <th>文章描述：</th>
                     <td>
-                        <textarea name="arti_desc"></textarea>
+                        <textarea name="arti_desc" >{{$arti['arti_desc']}}</textarea>
                         <p>可以写30个字</p>
                     </td>
                 </tr>
@@ -125,7 +129,7 @@
                                         htmlData += '</span>';
 
                                         $('td[id=tr_img]').append(htmlData);
-                                        var htmlData2 = '<input name="arti_thumb[]" value="'+data+'"  type="hidden" />';
+                                        var htmlData2 = '<input name="arti_thumb[]" value=" '+data +'"  type="hidden" />';
                                          $('tr[id=keyInput]').append(htmlData2);
                                     }
 
@@ -149,12 +153,18 @@
                 </tr>
                     <td></td>
                 <td id="tr_img" >
-                    {{--<img class='arti_thumb_img' src="" style="max-height: 60px;max-width: 40px"  />--}}
+                    <?php if($arti['arti_thumb'] != NULL): ?>
+                    <?php foreach (json_decode($arti['arti_thumb']) as $k=>$v): ?>
+                    <?php $src_img = "http://onyvwg7xz.bkt.clouddn.com/".str_replace(' ','',$v) ; ?>
+                    <img class='arti_thumb_img' src="{{$src_img}}"  style="max-height: 60px;max-width: 40px"  />
+                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </td>
+
                 <tr>
                     <th>内容：</th>
                     <td>
-                        <textarea id='arti_content' name="arti_content"></textarea>
+                        <textarea id='arti_content' name="arti_content">{{$arti['arti_content']}}</textarea>
 
                         <script>
                             UE.getEditor('arti_content', {
