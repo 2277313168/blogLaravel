@@ -109,11 +109,11 @@ class BaseController extends Controller
         //删除$bucket 中的文件 $key
         $err = $bucketMgr->delete($bucket, $key);
 
-        if ($err !== null) {
-            var_dump($err);
-        } else {
-            echo "Success!";
-        }
+//        if ($err !== null) {
+//            var_dump($err);
+//        } else {
+//            echo "Success!";
+//        }
 
     }
 

@@ -124,13 +124,14 @@
                                         var src_data = "http://onyvwg7xz.bkt.clouddn.com/"+data ;
                                         //alert(src_data);
                                         var htmlData = '';
-                                        htmlData += '<span style="border-left: 2px;">';
+                                        htmlData += '<span  class="arti_thumb_span" style="border-left: 2px;">';
+                                        htmlData +=  '<input name="arti_thumb[]" value="'+data+'"  type="hidden" />';
                                         htmlData += '<img class="arti_thumb_img" src=" ' + src_data+ '  " style="max-height: 80px;max-width: 60px"  />';
+                                        htmlData += '<input type="button" onclick="deleteImg('+data+')"  value="删除图片"  />.';
                                         htmlData += '</span>';
 
+
                                         $('td[id=tr_img]').append(htmlData);
-                                        var htmlData2 = '<input name="arti_thumb[]" value=" '+data +'"  type="hidden" />';
-                                         $('tr[id=keyInput]').append(htmlData2);
                                     }
 
                                     $('input[name=arti_thumb]').val(data);
@@ -153,10 +154,14 @@
                 </tr>
                     <td></td>
                 <td id="tr_img" >
-                    <?php if($arti['arti_thumb'] != NULL): ?>
+                    <?php if(json_decode($arti['arti_thumb']) != NULL): ?>
                     <?php foreach (json_decode($arti['arti_thumb']) as $k=>$v): ?>
                     <?php $src_img = "http://onyvwg7xz.bkt.clouddn.com/".str_replace(' ','',$v) ; ?>
-                    <img class='arti_thumb_img' src="{{$src_img}}"  style="max-height: 60px;max-width: 40px"  />
+                        <span  class="arti_thumb_span" style="border-left: 2px;">
+                        <img class='arti_thumb_img' src="{{$src_img}}"  style="max-height: 60px;max-width: 40px"  />
+                        <input name="arti_thumb[]" value="<?php echo str_replace(' ','',$v)?>"  type="hidden" />
+                        <input type="button" onclick="deleteImg(this)"  id="{{$arti['arti_id']}}"  key="{{str_replace(' ','',$v) }}" value="删除图片"  />
+                         </span>
                     <?php endforeach; ?>
                     <?php endif; ?>
                 </td>
@@ -236,6 +241,36 @@
                 </tbody>
             </table>
         </form>
+
+        <script>
+            function deleteImg(obj) {
+                var key = $(obj).attr('key');
+                var id = $(obj).attr('id');
+
+                alert(id);
+                alert(key);
+                $.ajax({
+                    {{--url : "{{url('base/deleteQiniu').'/'}}"+key ,--}}
+                    url : "{{url('arti/ajaxDeleteImg/')}}",
+                    type : 'post',
+                    data : {
+                        '_token': '{{csrf_token()}}',
+                        'id' : id,
+                        'key' : key
+                    },
+                    dataType : 'Json',
+                    success :function (data) {
+                        if(data == true){
+                            var spanObj = $(this).parent('.arti_thumb_span');
+                            alert($(spanObj).attr(class));
+                            $(spanObj).empty();
+                        }
+                    }
+
+                })
+            }
+        </script>
+
     </div>
 
 @endsection

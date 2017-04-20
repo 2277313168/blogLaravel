@@ -53,7 +53,15 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
     Route::any('arti/index','ArticleController@index');
     Route::any('arti/edit/{id}','ArticleController@edit');
     Route::any('arti/delete/{id}','ArticleController@delete');
+    Route::any('arti/ajaxDeleteImg','ArticleController@ajaxDeleteImg');
 
+
+    //links
+    Route::any('links/add','LinksController@add');
+    Route::any('links/index','LinksController@index');
+    Route::any('links/edit/{id}','LinksController@edit');
+    Route::any('links/delete/{id}','LinksController@delete');
+    Route::any('links/ajaxChangeOrder','LinksController@ajaxChangeOrder');
 
 });
 

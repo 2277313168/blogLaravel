@@ -120,13 +120,15 @@
                                         var src_data = "http://onyvwg7xz.bkt.clouddn.com/"+data ;
                                         //alert(src_data);
                                         var htmlData = '';
-                                        htmlData += '<span style="border-left: 2px;">';
+                                        htmlData += '<span  class="arti_thumb_span" style="border-left: 2px;">';
+                                        htmlData +=  '<input name="arti_thumb[]" value="'+data+'"  type="hidden" />';
                                         htmlData += '<img class="arti_thumb_img" src=" ' + src_data+ '  " style="max-height: 80px;max-width: 60px"  />';
+                                        htmlData += '<input type="button" onclick="deleteImg('+data+')"  value="删除图片"  /> ';
                                         htmlData += '</span>';
 
+
                                         $('td[id=tr_img]').append(htmlData);
-                                        var htmlData2 = '<input name="arti_thumb[]" value="'+data+'"  type="hidden" />';
-                                         $('tr[id=keyInput]').append(htmlData2);
+
                                     }
 
                                     $('input[name=arti_thumb]').val(data);
@@ -145,6 +147,7 @@
                     </style>
 
                 </td>
+
 
                 </tr>
                     <td></td>
@@ -174,50 +177,6 @@
 
 
 
-
-                {{--<tr>--}}
-                {{--<th>作者：</th>--}}
-                {{--<td>--}}
-                {{--<input type="text" name="">--}}
-                {{--<span><i class="fa fa-exclamation-circle yellow"></i>这里是默认长度</span>--}}
-                {{--</td>--}}
-                {{--</tr>--}}
-
-                {{--<tr>--}}
-                {{--<th><i class="require">*</i>缩略图：</th>--}}
-                {{--<td><input type="file" name=""></td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                {{--<th>单选框：</th>--}}
-                {{--<td>--}}
-                {{--<label for=""><input type="radio" name="">单选按钮一</label>--}}
-                {{--<label for=""><input type="radio" name="">单选按钮二</label>--}}
-                {{--</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                {{--<th>复选框：</th>--}}
-                {{--<td>--}}
-                {{--<label for=""><input type="checkbox" name="">复选框一</label>--}}
-                {{--<label for=""><input type="checkbox" name="">复选框二</label>--}}
-                {{--</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                {{--<th>描述：</th>--}}
-                {{--<td>--}}
-                {{--<textarea name="discription"></textarea>--}}
-                {{--</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                {{--<th>详细内容：</th>--}}
-                {{--<td>--}}
-                {{--<textarea class="lg" name="content"></textarea>--}}
-                {{--<p>标题可以写30个字</p>--}}
-                {{--</td>--}}
-                {{--</tr>--}}
-                {{--<tr>--}}
-                {{--<th></th>--}}
-
-
                 <td>
                     <input type="submit" value="提交">
                     <input type="button" class="back" onclick="history.go(-1)" value="返回">
@@ -227,5 +186,11 @@
             </table>
         </form>
     </div>
+
+    <script>
+        function deleteImg(key) {
+            alert('123');
+        }
+    </script>
 
 @endsection

@@ -30,7 +30,7 @@ class ArticleController extends BaseController {
             ];
             $msg = [
                 'arti_title.required' => '标题名称不能为空',
-                'arti_content.required' => '分类名称不能为空'
+                'arti_content.required' => '文章内容不能为空'
             ];
             $validator = Validator::make($input,$rules,$msg);
             if($validator->passes()){
@@ -92,7 +92,39 @@ class ArticleController extends BaseController {
         return view('admin/Article/edit')->with('catList',$catList)->with('arti',$arti);
     }
 
-    public function delete(){
+    public function ajaxDeleteImg(){
+        $post = Input::all();
+        $arti = Article::find($post['id']);
+        $arr = json_decode($arti['arti_thumb']);
+        foreach($arr as $k=>$v){
+            if($v == $post['key']){
+                unset($arr[$k]);
+            }
+        }
+        $arti['arti_thumb'] = json_encode($arr);
+        $res = $arti->update();
+        $this->deleteQiniu($post['key']);
+
+        return json_encode($res);
+
+    }
+
+    public function delete($id){
+        $arti = Article::find($id);
+        $keyArr = json_decode($arti['arti_thumb']);
+        if(! empty($keyArr)){
+            foreach($keyArr as $k=>$v ){
+                $this->deleteQiniu($v);
+            }
+        }
+
+
+        if($arti->delete()){
+            $data = 1;
+        }else{
+            $data = 0;
+        }
+        return json_decode($data);
 
     }
 
