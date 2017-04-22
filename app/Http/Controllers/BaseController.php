@@ -20,16 +20,17 @@ use Qiniu\Storage\BucketManager;
 
 class BaseController extends Controller
 {
-//    public function __construct()
-//{
-//    //parent::__construct();
-//
+    public function __construct()
+    {
+//        parent::__construct();
+        echo 123;
+
 //    if(session('admin') == null){
 //        var_dump(session('admin'));
 //        echo 'baseController';
 //        return redirect('admin/login');
 //    }
-//}
+    }
 
     //上传图片到服务器
 //    public function upload(){
@@ -51,7 +52,7 @@ class BaseController extends Controller
         $file = Input::file('Filedata');
 
 
-        require_once __DIR__ .'/../../../vendor/Qiniu_sdk/autoload.php';
+        require_once __DIR__ . '/../../../vendor/Qiniu_sdk/autoload.php';
 
         // 需要填写你的 Access Key 和 Secret Key
         $accessKey = '3UqPa31k1QlsFpnPl3zIbSMb4KJh_SQy3PCXdTCp';
@@ -70,7 +71,7 @@ class BaseController extends Controller
         $filePath = $file->getRealPath();
 
         // 上传到七牛后保存的文件名
-        $key = date('YmdHis').'_'.mt_rand(100,999);
+        $key = date('YmdHis') . '_' . mt_rand(100, 999);
 
         // 初始化 UploadManager 对象并进行文件的上传。
         $uploadMgr = new UploadManager();
@@ -80,7 +81,7 @@ class BaseController extends Controller
 
         if ($err !== null) {
             //var_dump($err);
-           $data = 0;
+            $data = 0;
         } else {
             $data = $key;
         }
@@ -88,9 +89,10 @@ class BaseController extends Controller
     }
 
 
-    public function deleteQiniu($key){
+    public function deleteQiniu($key)
+    {
 
-        require_once __DIR__ .'/../../../vendor/Qiniu_sdk/autoload.php';
+        require_once __DIR__ . '/../../../vendor/Qiniu_sdk/autoload.php';
 
         // 需要填写你的 Access Key 和 Secret Key
         $accessKey = '3UqPa31k1QlsFpnPl3zIbSMb4KJh_SQy3PCXdTCp';
@@ -103,7 +105,7 @@ class BaseController extends Controller
         $bucketMgr = new BucketManager($auth);
 
         //你要测试的空间， 并且这个key在你空间中存在
-        $bucket =  'blogimages';
+        $bucket = 'blogimages';
         //$key = 'php-logo.png';
 
         //删除$bucket 中的文件 $key

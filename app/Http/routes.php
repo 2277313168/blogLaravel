@@ -74,6 +74,21 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
 
 });
 
+
+Route::group([  'middleware' => ['web'],'namespace'=>'Home'  ], function () {
+
+
+    //home
+    Route::get('/index', 'IndexController@index');
+    Route::get('/list', 'IndexController@artiList');
+    Route::get('/new', 'IndexController@artiNew');
+
+
+
+
+
+});
+
 Route::group([  'middleware' => ['web'] ], function () {
     //BaseController
     Route::any('base/upload', 'BaseController@upload');
