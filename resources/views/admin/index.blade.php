@@ -6,8 +6,8 @@
 		<div class="top_left">
 			<div class="logo">后台管理模板</div>
 			<ul>
-				<li><a href="#" class="active">首页</a></li>
-				<li><a href="#">管理页</a></li>
+				<li><a href="{{url('/')}}" target="_blank" class="active">首页</a></li>
+				<li><a href="{{url('index/info')}}" target="main" >管理页</a></li>
 			</ul>
 		</div>
 		<div class="top_right">
@@ -24,22 +24,20 @@
 	<div class="menu_box">
 		<ul>
             <li>
-            	<h3><i class="fa fa-fw fa-clipboard"></i>常用操作</h3>
+            	<h3><i class="fa fa-fw fa-clipboard"></i>内容管理</h3>
                 <ul class="sub_menu">
 					<li><a href="{{url('cat/index')}}" target="main"><i class="fa fa-fw fa-list-ul"></i>分类页</a></li>
 					<li><a href="{{url('arti/index')}}" target="main"><i class="fa fa-fw fa-list-alt"></i>文章页</a></li>
-                    <li><a href="{{url('links/index')}}" target="main"><i class="fa fa-fw fa-plus-square"></i>导航链接</a></li>
+                    <li><a href="{{url('links/index')}}" target="main"><i class="fa fa-fw fa-share-alt-square"></i>导航链接</a></li>
 
-                    <li><a href="list.html" target="main"><i class="fa fa-fw fa-list-ul"></i>列表页</a></li>
-                    <li><a href="tab.html" target="main"><i class="fa fa-fw fa-list-alt"></i>tab页</a></li>
-                    <li><a href="img.html" target="main"><i class="fa fa-fw fa-image"></i>图片列表</a></li>
+
                 </ul>
             </li>
             <li>
             	<h3><i class="fa fa-fw fa-cog"></i>系统设置</h3>
-                <ul class="sub_menu">
-                    <li><a href="#" target="main"><i class="fa fa-fw fa-cubes"></i>网站配置</a></li>
-                    <li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>
+                <ul class="sub_menu" style="display:block">
+                    <li><a href="{{url('conf/index')}}" target="main"><i class="fa fa-fw fa-cogs"></i>网站配置项</a></li>
+                    {{--<li><a href="#" target="main"><i class="fa fa-fw fa-database"></i>备份还原</a></li>--}}
                 </ul>
             </li>
             <li>

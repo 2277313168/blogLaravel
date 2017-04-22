@@ -63,6 +63,15 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
     Route::any('links/delete/{id}','LinksController@delete');
     Route::any('links/ajaxChangeOrder','LinksController@ajaxChangeOrder');
 
+    //config
+    Route::any('conf/add','ConfigController@add');
+    Route::any('conf/index','ConfigController@index');
+    Route::any('conf/edit/{id}','ConfigController@edit');
+    Route::any('conf/delete/{id}','ConfigController@delete');
+    Route::any('conf/ajaxChangeOrder','ConfigController@ajaxChangeOrder');
+    Route::any('conf/changeContent','ConfigController@changeContent');
+    Route::any('conf/putFile','ConfigController@putFile');
+
 });
 
 Route::group([  'middleware' => ['web'] ], function () {
