@@ -29,5 +29,15 @@ class Category extends Model {
         return $res;
     }
 
+    public function getFather($arr){
+         $res = [];
+        foreach ($arr as $k=>$v){
+            if($v['cat_pid'] == 0){
+                $res[] = $v;
+            }
+        }
+        return $res;
+    }
+
 
 }

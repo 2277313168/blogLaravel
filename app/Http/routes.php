@@ -80,8 +80,8 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Home'  ], function () {
 
     //home
     Route::get('/index', 'IndexController@index');
-    Route::get('/list', 'IndexController@artiList');
-    Route::get('/new', 'IndexController@artiNew');
+    Route::get('/cat/{cat_id}', 'IndexController@artiCat');
+    Route::get('/arti/{arti_id}', 'IndexController@artiNew');
 
 
 

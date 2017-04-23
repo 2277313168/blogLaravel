@@ -22,14 +22,15 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-//        parent::__construct();
-        echo 123;
+//
+//        echo 123;
+//
+//        if (session('admin') == null) {
+//            var_dump(session('admin'));
+//            return redirect('admin/login');
+//        }
 
-//    if(session('admin') == null){
-//        var_dump(session('admin'));
-//        echo 'baseController';
-//        return redirect('admin/login');
-//    }
+
     }
 
     //上传图片到服务器
