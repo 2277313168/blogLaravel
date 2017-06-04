@@ -32,12 +32,22 @@ Route::get('param', 'TestController@test1');
 
 Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
 
+    //admin
+    Route::any('admin/login', 'AdminController@login');
+    Route::get('admin/verifyCode', 'AdminController@verifyCode');
+
+});
+
+
+
+Route::group([  'middleware' => ['web','admin.login'],'namespace'=>'Admin'  ], function () {
+
 
     //admin
     Route::get('admin/logout', 'AdminController@logout');
     Route::any('admin/psw', 'AdminController@changePsw');
-    Route::any('admin/login', 'AdminController@login');
-    Route::get('admin/verifyCode', 'AdminController@verifyCode');
+//    Route::any('admin/login', 'AdminController@login');
+//    Route::get('admin/verifyCode', 'AdminController@verifyCode');
     Route::get('index/index', 'IndexController@index');
     Route::get('index/info', 'IndexController@info');
 
@@ -73,6 +83,10 @@ Route::group([  'middleware' => ['web'],'namespace'=>'Admin'  ], function () {
     Route::any('conf/putFile','ConfigController@putFile');
 
 });
+
+
+
+
 
 
 Route::group([  'middleware' => ['web'],'namespace'=>'Home'  ], function () {

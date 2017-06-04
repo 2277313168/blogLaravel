@@ -29,6 +29,7 @@ class AdminController extends BaseController
                 if ($admin) {
                     if (Crypt::decrypt($admin['password']) == $input['password']) {
                         session(['admin' => $admin]);
+//                        var_dump(session('admin'));die;
                         return redirect('index/index');
                     }
                 }

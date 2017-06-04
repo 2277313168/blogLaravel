@@ -22,9 +22,7 @@ class BaseController extends Controller
 {
     public function __construct()
     {
-//
-//        echo 123;
-//
+
 //        if (session('admin') == null) {
 //            var_dump(session('admin'));
 //            return redirect('admin/login');
