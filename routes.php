@@ -11,11 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-
-Route::any('/', 'Home\IndexController@index');
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('param', 'TestController@test1');
 

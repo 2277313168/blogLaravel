@@ -43,7 +43,7 @@
             <p>{{$v['arti_desc']}}</p>
             <a title="/" href="{{url('arti/'.$v['arti_id'])}}" target="_blank" class="readmore">阅读全文>></a>
         </ul>
-        <p class="dateview"><span>{{date('Y-m-d',$v['arti_time'])}}</span><span>作者：{{$v['arti_editor']}}</span></p>
+        <p class="dateview"><span><?php echo "&nbsp;" ?>{{ date('Y-m-d',$v['arti_time'])}}</span><span>作者：{{$v['arti_editor']}}</span></p>
        <?php endforeach; ?>
 
             <div class="page">
