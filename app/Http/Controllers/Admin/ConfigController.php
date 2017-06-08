@@ -79,7 +79,7 @@ class ConfigController extends BaseController {
             $validate = Validator::make($input,$rules,$msg);
             if($validate->passes()){
                 $conf->update($input);
-                $this->putFile();
+//                $this->putFile();
                 return redirect('conf/index');
             }else{
                 return back()->withErrors($validate);
