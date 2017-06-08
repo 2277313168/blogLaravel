@@ -47,7 +47,7 @@
                         <td>
                             {{$v['links_name']}}
                         </td>
-                        <td>{{$v['links_url']}}</td>
+                        <td>{{url('/')}}{{$v['links_url']}}</td>
                         <td>{{$v['links_desc']}}</td>
                         {{--<td>{{date('Y-m-d' ,$v['links_time'])}}</td>--}}
                         {{--<td>2014-03-15 21:11:01</td>--}}

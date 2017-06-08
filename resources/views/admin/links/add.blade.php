@@ -37,14 +37,14 @@
 
     <div class="result_wrap">
 
-        <form action="{{url('links/edit/'.$links['links_id'])}}" method="post" enctype="multipart/form-data">
+        <form action="{{url('links/add')}}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <table class="add_tab">
                 <tbody>
                 <tr>
                     <th><i class="require">*</i>链接名称：</th>
                     <td>
-                        <input type="text" name="links_name" size="50px" value="{{$links['links_name']}}">
+                        <input type="text" name="links_name" size="50px">
                         <span><i class="fa fa-exclamation-circle yellow"></i>链接名称必须填写</span>
                     </td>
                 </tr>
@@ -52,7 +52,7 @@
                 <tr>
                     <th><i class="require">*</i>URL地址：</th>
                     <td>
-                        <input type="text" size="50px" name="links_url" value="{{$links['links_url']}}">
+                        {{url('/')}}<input type="text" size="15px" name="links_url" value="">
                         <span><i class="fa fa-exclamation-circle yellow"></i>链接地址必须填写</span>
                     </td>
                 </tr>
@@ -61,14 +61,14 @@
                 <tr>
                     <th>链接描述：</th>
                     <td>
-                        <input type="text" name="links_desc" size="50px" value="{{$links['links_desc']}}">
+                        <input type="text" name="links_desc" size="50px">
                     </td>
                 </tr>
 
                 <tr>
                     <th>链接排序：</th>
                     <td>
-                        <input type="text" name="links_order" value="0" size="3px" value="{{$links['links_order']}}">
+                        <input type="text" name="links_order" value="0" size="3px">
                     </td>
                 </tr>
 
@@ -88,7 +88,9 @@
     </div>
 
     <script>
-
+        function deleteImg(key) {
+            alert('123');
+        }
     </script>
 
 @endsection
