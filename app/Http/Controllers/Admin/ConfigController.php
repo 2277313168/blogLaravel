@@ -104,7 +104,7 @@ class ConfigController extends BaseController {
                 $conf = Config::find($v);
                 $conf['conf_content'] = $input['conf_content'][$k];
                 $conf->update();
-                $this->putFile();
+//                $this->putFile();
             }
             return redirect('conf/index');
         }
