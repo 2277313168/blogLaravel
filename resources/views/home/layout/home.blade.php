@@ -17,7 +17,7 @@
     <div id="logo"><a href="{{url('/')}}"></a></div>
     <nav class="topnav" id="topnav">
         <?php foreach ($navs as $k=>$v): ?>
-        <a href="{{$v['links_url']}}"><span>{{$v['links_name']}}</span><span class="en">{{$v['links_desc']}}</span></a>
+        <a href="{{url('/').$v['links_url']}}"><span>{{$v['links_name']}}</span><span class="en">{{$v['links_desc']}}</span></a>
             <?php endforeach; ?>
     </nav>
 </header>
