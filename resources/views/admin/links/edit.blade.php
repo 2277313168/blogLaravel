@@ -68,7 +68,7 @@
                 <tr>
                     <th>链接排序：</th>
                     <td>
-                        <input type="text" name="links_order" value="0" size="3px" value="{{$links['links_order']}}">
+                        <input type="text" name="links_order" size="3px" value="{{$links['links_order']}}">
                     </td>
                 </tr>
 
